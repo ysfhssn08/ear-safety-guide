@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mix Today, Hear Tomorrow: an ear safety guide for engineers and musicians</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&family=Source+Serif+4:wght@400;600&display=swap">
+<style>
+:root{--bg:#f6f7f9;--ink:#13202c;--muted:#51606e;--line:#d5dbe2;--safe:#2e9e6b;--warn:#d9a000;--bad:#d1423a;--accent:#2a56a3;--panel:#ffffff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171e;--ink:#e8edf2;--muted:#9aa8b5;--line:#2a3643;--panel:#17212b;--accent:#7ea6e8;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10171e;--ink:#e8edf2;--muted:#9aa8b5;--line:#2a3643;--panel:#17212b;--accent:#7ea6e8;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 "Source Serif 4",Georgia,serif}
+main{max-width:46rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+h1,h2,h3,.sans{font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1{font-size:clamp(2.2rem,7vw,3.6rem);line-height:1.05;font-weight:800;margin:0 0 .75rem;letter-spacing:-.02em}
+h2{font-size:1.5rem;margin:3rem 0 .5rem;font-weight:800}
+h3{font-size:1.05rem;margin:1.25rem 0 .25rem;font-weight:600}
+p{margin:.5rem 0;max-width:40rem}
+.lede{font-size:1.2rem;color:var(--muted)}
+.calc{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1.25rem;margin:1.5rem 0}
+.calc label{font:600 .95rem "Public Sans",system-ui,sans-serif}
+.read{display:flex;flex-wrap:wrap;gap:.5rem 2rem;align-items:baseline;margin-top:.75rem;font-family:"Public Sans",system-ui,sans-serif}
+.big{font-size:2.6rem;font-weight:800;line-height:1}
+.time{font-size:1.6rem;font-weight:800}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:14px;border-radius:7px;margin:.9rem 0 .4rem;outline-offset:6px;
+background:linear-gradient(90deg,var(--safe) 0%,var(--safe) 30%,var(--warn) 34%,var(--bad) 60%,var(--bad) 100%)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--ink);border:3px solid var(--bg);cursor:grab}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--ink);border:3px solid var(--bg);cursor:grab}
+.scale{display:flex;justify-content:space-between;font:.8rem "Public Sans",system-ui,sans-serif;color:var(--muted)}
+.note{font-size:.92rem;color:var(--muted)}
+ol.path{padding-left:1.2rem}
+ol.path li{margin:.5rem 0;max-width:40rem}
+dl{margin:.5rem 0}
+dt{font:600 1rem "Public Sans",system-ui,sans-serif;margin-top:1rem}
+dd{margin:.15rem 0 0;max-width:40rem}
+table{border-collapse:collapse;width:100%;font:.95rem "Public Sans",system-ui,sans-serif}
+.wrap{overflow-x:auto}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--line)}
+.q{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1rem 1.25rem;margin:1rem 0}
+.q p{font-weight:600;margin-top:0}
+.opt{display:block;width:100%;text-align:left;margin:.35rem 0;padding:.6rem .8rem;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);font:inherit;font-size:.98rem;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.opt:focus-visible,details summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.opt.right{border-color:var(--safe);background:color-mix(in srgb,var(--safe) 18%,var(--bg))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,var(--bg))}
+.exp{font-size:.95rem;color:var(--muted);margin:.5rem 0 0}
+details{border-left:3px solid var(--accent);padding:.25rem 0 .25rem 1rem;margin:1rem 0}
+summary{cursor:pointer;font:600 1rem "Public Sans",system-ui,sans-serif}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+footer p{margin:.4rem 0}
+</style>
+</head>
+<body>
+<main>
+<h1>Mix today, hear tomorrow</h1>
+<p class="lede">Your ears are the one tool in the studio you can’t replace. This short guide is for engineers and musicians, and it starts with a question: how loud is too loud, and for how long?</p>
+
+<section class="calc" aria-labelledby="calc-h">
+<label id="calc-h" for="db">Drag to set a sound level in dBA</label>
+<input type="range" id="db" min="70" max="120" value="85" step="1">
+<div class="scale" aria-hidden="true"><span>70</span><span>85</span><span>100</span><span>120</span></div>
+<div class="read" aria-live="polite">
+<span class="big"><span id="lvl">85</span> dBA</span>
+<span>Safe time per day: <span class="time" id="t">8 hours</span></span>
+</div>
+<p class="note" id="ref"></p>
+<p class="note">Based on the NIOSH (1998) limit of 85 dBA for 8 hours. Every 3 dB increase halves the safe time.</p>
+</section>
+
+<h2>How the ear works</h2>
+<p>Sound travels through three zones before your brain hears it as music.</p>
+<ol class="path">
+<li><strong>Outer ear.</strong> The pinna and ear canal funnel pressure waves to the eardrum. The canal boosts frequencies around 2–4 kHz, which is why our hearing is so sensitive to speech and to harshness in a mix.</li>
+<li><strong>Middle ear.</strong> The eardrum moves three tiny bones (the ossicles), which act as a lever and match the air’s low pressure to the fluid of the inner ear.</li>
+<li><strong>Inner ear.</strong> In the cochlea, the basilar membrane sorts frequencies by position. Rows of hair cells turn that movement into nerve signals. Humans do not regrow these hair cells once they are damaged.</li>
+</ol>
+
+<h2>What your hearing can and can’t do</h2>
+<dl>
+<dt>Frequency range</dt>
+<dd>Young, healthy ears hear roughly 20 Hz to 20 kHz. The top end shrinks with age and exposure, so a mix engineer’s high frequencies are usually the first thing to go.</dd>
+<dt>Dynamic range</dt>
+<dd>From the threshold of hearing (about 0 dB SPL) to the threshold of pain (somewhere around 120–130 dB SPL) is a range of well over 100 dB. Damage starts long before pain does.</dd>
+<dt>Equal loudness</dt>
+<dd>Fletcher and Munson (1933) showed that we hear mid frequencies louder than bass or treble at the same level, and that difference shrinks as things get louder. Mixing too quietly or too loudly will fool your judgement of balance, and loud mixing also costs you hearing.</dd>
+</dl>
+
+<h2>What goes wrong</h2>
+<dl>
+<dt>Temporary threshold shift</dt>
+<dd>That dull, muffled feeling after a loud gig. Your hearing threshold has been pushed up. It usually recovers, but repeating it is how permanent loss starts.</dd>
+<dt>Noise-induced hearing loss</dt>
+<dd>Permanent damage to hair cells, typically showing first around 3–6 kHz. It is painless and gradual, so most people notice it late.</dd>
+<dt>Tinnitus and hyperacusis</dt>
+<dd>Ringing in the ears, or everyday sounds feeling painfully loud. Both can be permanent and both are common in musicians.</dd>
+</dl>
+
+<h2>Safe listening by setting</h2>
+<div class="wrap"><table>
+<thead><tr><th>Setting</th><th>What to do</th></tr></thead>
+<tbody>
+<tr><td>Studio</td><td>Mix at a moderate level, around 70–80 dB SPL at the listening position, with short louder checks. Take a 10 minute break each hour. Check the mix on headphones at low volume too.</td></tr>
+<tr><td>Live</td><td>Wear musician’s earplugs with flat attenuation, so music stays clear but quieter. Stay away from the PA, and give your ears a quiet recovery period after the show.</td></tr>
+<tr><td>Personal listening</td><td>Keep headphones at about 60% volume or lower. If someone next to you can hear it, or you can’t hear them, it’s too loud.</td></tr>
+</tbody></table></div>
+
+<h2>Using a dB meter or app</h2>
+<ol class="path">
+<li>Set the weighting. Use <strong>A-weighting (dBA)</strong> for exposure limits, because it follows the ear’s reduced sensitivity to bass. Use <strong>C-weighting (dBC)</strong> to see how much low-frequency energy is present.</li>
+<li>Use the <strong>slow</strong> response for steady noise and <strong>fast</strong> for changing material.</li>
+<li>Hold the phone away from your body, with the microphone pointing at the source, and measure for at least 30 seconds.</li>
+<li>Write down the average and the peak. Treat phone apps as a guide only: they are not calibrated like a class 1 or 2 meter.</li>
+</ol>
+
+<h2>Check what you’ve learned</h2>
+<div id="quiz"></div>
+<details>
+<summary>Case study: the rehearsal room</summary>
+<p>A four-piece band rehearses for three hours, three nights a week. A meter app reads an average of 100 dBA at the drum kit. Using the calculator above, how long is the safe daily limit, and what could the band change first?</p>
+<p class="note">At 100 dBA the limit is about 15 minutes. Quick wins: turn the amps down so the drums stop competing, move the kit and the singer away from walls, wear earplugs, and schedule 10 minute silent breaks.</p>
+</details>
+
+<footer>
+<p>Made by Yousif Al Jaddah for AUD175.2 Audio Investigations 2.</p>
+<p>Sources: Fletcher, H., &amp; Munson, W. A. (1933). Loudness, its definition, measurement and calculation. <em>Journal of the Acoustical Society of America, 5</em>(2), 82–108. NIOSH. (1998). <em>Criteria for a recommended standard: Occupational noise exposure</em> (DHHS Publication No. 98-126). World Health Organization. (2015). <em>Make listening safe</em>.</p>
+<p>This guide is educational and not medical advice. If you have ringing or muffled hearing that lasts more than a day, see an audiologist.</p>
+</footer>
+</main>
+<script>
+(function(){
+var s=document.getElementById('db'),lv=document.getElementById('lvl'),t=document.getElementById('t'),rf=document.getElementById('ref');
+var refs=[[65,'about as loud as normal conversation'],[75,'about as loud as a vacuum cleaner'],[85,'about as loud as heavy city traffic'],[95,'about as loud as a motorbike or power tools'],[105,'about as loud as a nightclub'],[115,'about as loud as a rock concert up front'],[121,'about as loud as a siren close by']];
+function fmt(m){if(m>=60){var h=m/60;return (h>=10?Math.round(h):+h.toFixed(1))+(h===1?' hour':' hours')}
+if(m>=1){return (m>=10?Math.round(m):+m.toFixed(1))+' minutes'}
+return Math.max(1,Math.round(m*60))+' seconds'}
+function upd(){var L=+s.value;lv.textContent=L;
+t.textContent=L<=85?'8 hours or more':fmt(480/Math.pow(2,(L-85)/3));
+for(var i=0;i<refs.length;i++){if(L<refs[i][0]){rf.textContent='Roughly '+refs[i][1]+'.';break}}}
+s.addEventListener('input',upd);upd();
+var Q=[
+{q:'You raise a loud session from 85 dBA to 94 dBA. What happens to the safe daily time?',o:['It halves once, to 4 hours','It drops to 2 hours','It drops to 1 hour','It stays the same'],a:2,e:'Each 3 dB halves the time: 85 to 88 is 4 hours, 91 is 2 hours and 94 is 1 hour.'},
+{q:'Which part of the ear contains the hair cells that do not regrow once damaged?',o:['The ossicles','The cochlea','The eardrum','The pinna'],a:1,e:'The hair cells sit on the basilar membrane inside the cochlea.'},
+{q:'Your ears ring and everything sounds muffled after a gig. What does this most likely mean?',o:['Your ears are clearing themselves','A temporary threshold shift, a warning sign','Nothing, it only matters if it hurts','Your headphones are faulty'],a:1,e:'It is a temporary threshold shift. Damage is painless, so ringing is the warning you get.'},
+{q:'Which weighting should you pick on a dB meter to compare readings with exposure limits?',o:['A-weighting (dBA)','Z-weighting only','Nothing, the setting does not matter','C-weighting only'],a:0,e:'Exposure limits such as NIOSH’s 85 dBA are written in A-weighted terms.'}
+];
+var box=document.getElementById('quiz'),score=0,done=0;
+Q.forEach(function(it,i){var d=document.createElement('div');d.className='q';
+var p=document.createElement('p');p.textContent=(i+1)+'. '+it.q;d.appendChild(p);
+var ex=document.createElement('p');ex.className='exp';ex.setAttribute('aria-live','polite');
+var bs=[];
+it.o.forEach(function(o,j){var b=document.createElement('button');b.type='button';b.className='opt';b.textContent=o;
+b.onclick=function(){if(d.dataset.done)return;d.dataset.done=1;done++;
+if(j===it.a){b.classList.add('right');score++}else{b.classList.add('wrong');bs[it.a].classList.add('right')}
+ex.textContent=it.e;if(done===Q.length){sc.textContent='You scored '+score+' out of '+Q.length+'.'}};
+bs.push(b);d.appendChild(b)});
+d.appendChild(ex);box.appendChild(d)});
+var sc=document.createElement('p');sc.style.fontWeight='600';sc.setAttribute('aria-live','polite');box.appendChild(sc);
+})();
+</script>
+</body>
+</html>
