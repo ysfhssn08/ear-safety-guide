@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>(AUD175 Project 2) Ear safety guide for engineers and musicians</title>
+<title>AUD175 Project 2 - Ear Safety Guide</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&family=Source+Serif+4:wght@400;600&display=swap">
 <style>
 :root{--bg:#f6f7f9;--ink:#13202c;--muted:#51606e;--line:#d5dbe2;--safe:#2e9e6b;--warn:#d9a000;--bad:#c23a32;--accent:#2a56a3;--panel:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -91,13 +91,8 @@ footer p{margin:.4rem 0;padding-left:1.5rem;text-indent:-1.5rem}
 <dl>
 <dt>Frequency range</dt><dd>Young, healthy ears hear roughly 20 Hz to 20 kHz. The top end shrinks with age and exposure.</dd>
 <dt>Dynamic range</dt><dd>From the threshold of hearing (about 0 dB SPL) to the threshold of pain (around 120–130 dB SPL) is well over 100 dB. Damage starts long before pain does.</dd>
-<dt>Equal loudness</dt><dd>We hear mid frequencies louder than bass or treble at the same level, and the gap shrinks as things get louder (Fletcher &amp; Munson, 1933; International Organization for Standardization [ISO], 2003).</dd>
+<dt>Equal loudness</dt><dd>We hear mid frequencies louder than bass or treble at the same level, and the gap shrinks as things get louder (Fletcher &amp; Munson, 1933; International Organization for Standardization [ISO], 2003). Mixing very quietly makes bass seem weaker than it is.</dd>
 </dl>
-<figure>
-<svg id="eq" viewBox="0 0 640 300" role="img" aria-label="Chart of approximate equal loudness contours at 40 and 80 phon. The ear needs much more bass and some extra treble to sound as loud as 1 kHz, and the 40 phon line is steeper."></svg>
-<p class="note"><b style="color:var(--accent)">■ 40 phon</b> &nbsp; <b style="color:var(--bad)">■ 80 phon</b></p>
-<figcaption>Figure 2. Approximate equal loudness contours, drawn from the shape of the ISO 226:2003 curves. Each line shows the level needed at each frequency to sound as loud as 1 kHz. Mixing very quietly makes bass seem weaker than it is.</figcaption>
-</figure>
 
 <h2>Where is the sound coming from?</h2>
 <p>Localisation uses two main cues from having two ears (Moore, 2012). <strong>Interaural time difference</strong> is the tiny delay, up to about 0.7 ms, between a sound reaching one ear and then the other. It works best below roughly 1.5 kHz. <strong>Interaural level difference</strong> is the loudness difference caused by the head shadowing the far ear, and it matters most at higher frequencies. The shape of the pinna adds cues for height and front-back position.</p>
@@ -131,8 +126,24 @@ footer p{margin:.4rem 0;padding-left:1.5rem;text-indent:-1.5rem}
 <figure>
 <svg id="wt" viewBox="0 0 640 300" role="img" aria-label="Chart of A-weighting and C-weighting curves. A-weighting cuts low frequencies heavily; C-weighting is nearly flat from 50 Hz to 5 kHz."></svg>
 <p class="note"><b style="color:var(--accent)">■ A-weighting</b> &nbsp; <b style="color:var(--bad)">■ C-weighting</b> &nbsp; <b style="color:var(--muted)">■ Flat (Z)</b></p>
-<figcaption>Figure 3. Weighting curves calculated from the IEC 61672 formulas. A-weighting removes much of the bass to follow the ear’s sensitivity at moderate levels, which is why it is used for exposure limits.</figcaption>
+<figcaption>Figure 2. Weighting values at the 1/3-octave centre frequencies, calculated from the IEC 61672 formulas (the same formulas work in a spreadsheet). A-weighting removes much of the bass to follow the ear’s sensitivity at moderate levels, which is why it is used for exposure limits.</figcaption>
 </figure>
+
+<h2>What I measured</h2>
+<p>I measured three sources with a dB meter app on my phone: my MacBook speakers playing a song from YouTube with the Mac at about 60% volume, my headphones at 80% volume, and a 2025 Lotus Emira, measured 1 m from the exhaust while it was revved every 10–15 seconds. For the music, the YouTube player volume stayed at 50%, so the differences come from the devices.</p>
+<figure>
+<svg id="bars" viewBox="0 0 640 280" role="img" aria-label="Bar chart of average measured levels: MacBook speakers 80 dBA, headphones 95 dBA, Lotus Emira exhaust at 1 metre 99 dBA, with the 85 dBA limit marked."></svg>
+<figcaption>Figure 3. Average level of each source compared with the NIOSH (1998) limit of 85 dBA.</figcaption>
+</figure>
+<div class="wrap"><table>
+<thead><tr><th>Source</th><th>Average</th><th>Safe time at that level (NIOSH, 1998)</th></tr></thead>
+<tbody>
+<tr><td>MacBook speakers</td><td>80 dBA</td><td>8 hours or more (below the limit)</td></tr>
+<tr><td>Headphones</td><td>95 dBA</td><td>about 48 minutes</td></tr>
+<tr><td>Lotus Emira exhaust, 1 m</td><td>99 dBA</td><td>about 19 minutes</td></tr>
+</tbody></table></div>
+<p>The headphone result surprised me most. The car is louder, but nobody stands next to an exhaust for hours, while headphones are easy to wear all day.</p>
+<p><strong>Distance matters.</strong> In open space the level drops by roughly 6 dB each time the distance from a source doubles, so a reading at 2 m would be lower than at 1 m. That is why a measurement should always say how far the microphone was from the source, and why I recorded 1 m for the exhaust. The revving also makes the level rise and fall, so an average understates the peaks. Phone microphones are only a rough guide, and the level at your eardrum from headphones is not the same as what a microphone reads.</p>
 
 <h2>Check what you’ve learned</h2>
 <div id="quiz"></div>
@@ -171,14 +182,20 @@ function Y(v){return t+(y1-v)/(y1-y0)*(H-t-b)}
 if([20,100,1000,10000,20000].indexOf(f)>-1)o+='<text x="'+x+'" y="'+(H-b+16)+'" text-anchor="middle">'+(f>=1000?f/1000+'k':f)+'</text>'});
 for(var v=y0;v<=y1;v+=dy){var y=Y(v).toFixed(1);o+='<line class="gl" x1="'+l+'" x2="'+(W-r)+'" y1="'+y+'" y2="'+y+'"/><text x="'+(l-6)+'" y="'+(+y+4)+'" text-anchor="end">'+v+'</text>'}
 o+='<text x="'+(l+(W-l-r)/2)+'" y="'+(H-3)+'" text-anchor="middle">Frequency (Hz)</text><text transform="rotate(-90)" x="'+(-(t+(H-t-b)/2))+'" y="12" text-anchor="middle">'+yl+'</text>';
-ser.forEach(function(q){o+='<polyline fill="none" style="stroke:'+q[1]+'" stroke-width="2.5" stroke-linejoin="round" points="'+q[0].map(function(p){return X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)}).join(' ')+'"/>'});
+ser.forEach(function(q){if(q[2])o+=q[0].map(function(p){return '<circle cx="'+X(p[0]).toFixed(1)+'" cy="'+Y(p[1]).toFixed(1)+'" r="3" style="fill:'+q[1]+'"/>'}).join('');o+='<polyline fill="none" style="stroke:'+q[1]+'" stroke-width="2.5" stroke-linejoin="round" points="'+q[0].map(function(p){return X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)}).join(' ')+'"/>'});
 document.getElementById(id).innerHTML=o}
-function gen(fn){var a=[];for(var i=0;i<=60;i++){var f=20*Math.pow(10,3*i/60);a.push([f,fn(f)])}return a}
+function gen(fn){return [20,25,31.5,40,50,63,80,100,125,160,200,250,315,400,500,630,800,1000,1250,1600,2000,2500,3150,4000,5000,6300,8000,10000,12500,16000,20000].map(function(f){return [f,fn(f)]})}
 var c=12194*12194;
 function A(f){var q=f*f;return 20*Math.log10(c*q*q/((q+20.6*20.6)*Math.sqrt((q+107.7*107.7)*(q+737.9*737.9))*(q+c)))+2}
 function C(f){var q=f*f;return 20*Math.log10(c*q/((q+20.6*20.6)*(q+c)))+0.06}
-plot('eq',[[[[20,99],[31.5,88],[63,73],[125,60],[250,50],[500,43],[1000,40],[2000,39],[3150,34],[4000,33],[6300,40],[8000,45],[10000,49],[12500,52]],'var(--accent)'],[[[20,118],[31.5,108],[63,95],[125,86],[250,82],[500,80],[1000,80],[2000,78],[3150,75],[4000,73],[6300,77],[8000,82],[10000,88],[12500,92]],'var(--bad)']],0,130,20,'Sound pressure level (dB SPL)');
-plot('wt',[[[[20,0],[20000,0]],'var(--muted)'],[gen(A),'var(--accent)'],[gen(C),'var(--bad)']],-60,10,10,'Relative response (dB)');
+plot('wt',[[[[20,0],[20000,0]],'var(--muted)'],[gen(A),'var(--accent)',1],[gen(C),'var(--bad)',1]],-60,10,10,'Relative response (dB)');
+
+(function(){var d=[['MacBook speakers',80],['Headphones',95],['Emira exhaust, 1 m',99]],H=280,l=46,t=14,b=44,o='';
+function Y(v){return t+(120-v)/120*(H-t-b)}
+for(var v=0;v<=120;v+=20){var y=Y(v).toFixed(1);o+='<line class="gl" x1="'+l+'" x2="630" y1="'+y+'" y2="'+y+'"/><text x="'+(l-6)+'" y="'+(+y+4)+'" text-anchor="end">'+v+'</text>'}
+d.forEach(function(p,i){var x=l+40+i*180,y=Y(p[1]);o+='<rect x="'+x+'" y="'+y.toFixed(1)+'" width="110" height="'+(Y(0)-y).toFixed(1)+'" style="fill:var(--accent)"/><text x="'+(x+55)+'" y="'+(y+22).toFixed(1)+'" text-anchor="middle" style="fill:var(--bg);font-weight:800;font-size:16px">'+p[1]+'</text><text x="'+(x+55)+'" y="'+(Y(0)+18).toFixed(1)+'" text-anchor="middle">'+p[0]+'</text>'});
+var y85=Y(85).toFixed(1);o+='<line x1="'+l+'" x2="630" y1="'+y85+'" y2="'+y85+'" stroke-dasharray="6 4" stroke-width="2" style="stroke:var(--bad)"/><text x="'+(l+4)+'" y="'+(y85-6)+'" style="fill:var(--bad);font-weight:600">85 dBA limit</text><text transform="rotate(-90)" x="'+(-(t+(H-t-b)/2))+'" y="12" text-anchor="middle">Average level (dBA)</text>';
+document.getElementById('bars').innerHTML=o})();
 
 var Q=[
 {q:'You raise a loud session from 85 dBA to 94 dBA. What happens to the safe daily time?',o:['It halves once, to 4 hours','It drops to 2 hours','It drops to 1 hour','It stays the same'],a:2,e:'Each 3 dB halves the time: 85 to 88 is 4 hours, 91 is 2 hours and 94 is 1 hour.'},
