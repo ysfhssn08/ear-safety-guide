@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AUD175 Project 2 - Ear Safety Guide</title>
+<title>Mix today, hear tomorrow: an ear safety guide for engineers and musicians</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&family=Source+Serif+4:wght@400;600&display=swap">
 <style>
 :root{--bg:#f6f7f9;--ink:#13202c;--muted:#51606e;--line:#d5dbe2;--safe:#2e9e6b;--warn:#d9a000;--bad:#c23a32;--accent:#2a56a3;--panel:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -31,6 +31,9 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 ol{padding-left:1.2rem}li{margin:.5rem 0;max-width:40rem}
 dt{font-weight:600;margin-top:1rem}dd{margin:.15rem 0 0;max-width:40rem}
 figure{margin:1.5rem 0}figcaption{font-size:.9rem;color:var(--muted);max-width:40rem}
+img{max-width:100%;height:auto;display:block;border-radius:4px}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;max-width:34rem}
+@media (max-width:480px){.shots{grid-template-columns:1fr}}
 svg{width:100%;height:auto;display:block}
 svg text{fill:var(--muted);font:12px "Public Sans",system-ui,sans-serif}
 svg .t{fill:var(--ink);font-weight:600;font-size:13px}
@@ -66,20 +69,8 @@ footer p{margin:.4rem 0;padding-left:1.5rem;text-indent:-1.5rem}
 
 <h2>How the ear works</h2>
 <figure>
-<svg viewBox="0 0 640 200" role="img" aria-label="Diagram of the ear in three zones: outer ear with pinna and canal, middle ear with three ossicles, inner ear with the cochlea.">
-<rect class="zone" x="8" y="22" width="190" height="165" rx="10"/><rect class="zone" x="225" y="22" width="190" height="165" rx="10"/><rect class="zone" x="442" y="22" width="190" height="165" rx="10"/>
-<text class="t" x="20" y="44">Outer ear</text><text class="t" x="237" y="44">Middle ear</text><text class="t" x="454" y="44">Inner ear</text>
-<path d="M58 80C16 80 16 150 58 150" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/>
-<line x1="58" y1="115" x2="198" y2="115" stroke="var(--accent)" stroke-width="12" stroke-linecap="round" opacity=".35"/>
-<text x="22" y="170">Pinna</text><text x="105" y="145">Ear canal</text>
-<line x1="212" y1="92" x2="212" y2="138" stroke="var(--bad)" stroke-width="4" stroke-linecap="round"/><text x="212" y="82" text-anchor="middle">Eardrum</text>
-<g fill="var(--accent)"><circle cx="258" cy="115" r="9"/><circle cx="318" cy="105" r="7"/><circle cx="378" cy="115" r="5"/></g>
-<path d="M258 115L318 105L378 115" fill="none" stroke="var(--accent)" stroke-width="2"/>
-<text x="258" y="145" text-anchor="middle">Malleus</text><text x="318" y="145" text-anchor="middle">Incus</text><text x="378" y="145" text-anchor="middle">Stapes</text>
-<path d="M550 108a8 8 0 0 1-8 8a16 16 0 0 1-16-16a24 24 0 0 1 24-24a32 32 0 0 1 32 32a40 40 0 0 1-40 40" fill="none" stroke="var(--bad)" stroke-width="3" stroke-linecap="round"/>
-<text x="500" y="178">Cochlea</text><text x="590" y="120">Hair cells</text><text x="590" y="136">→ nerve</text>
-</svg>
-<figcaption>Figure 1. Sound travels from the outer ear to the eardrum, through the ossicles, and into the cochlea (Moore, 2012).</figcaption>
+<img src="ear-diagram.png" alt="Labelled diagram of the human ear showing the outer ear, the middle ear with its three small bones, and the inner ear with the cochlea.">
+<figcaption>Figure 1. Anatomy of the human ear (Chittka &amp; Brockmann, 2005; CC BY 2.5, via Wikimedia Commons). See also Moore (2012).</figcaption>
 </figure>
 <ol>
 <li><strong>Outer ear.</strong> The pinna and canal funnel pressure waves to the eardrum and boost frequencies around 2–4 kHz.</li>
@@ -124,26 +115,33 @@ footer p{margin:.4rem 0;padding-left:1.5rem;text-indent:-1.5rem}
 <li>Load a recording into a frequency analyser (a DAW meter, or a free plug-in such as Voxengo SPAN) to see which frequencies carry the energy. A spectrogram shows how that changes over time.</li>
 </ol>
 <figure>
-<svg id="wt" viewBox="0 0 640 300" role="img" aria-label="Chart of A-weighting and C-weighting curves. A-weighting cuts low frequencies heavily; C-weighting is nearly flat from 50 Hz to 5 kHz."></svg>
-<p class="note"><b style="color:var(--accent)">■ A-weighting</b> &nbsp; <b style="color:var(--bad)">■ C-weighting</b> &nbsp; <b style="color:var(--muted)">■ Flat (Z)</b></p>
-<figcaption>Figure 2. Weighting values at the 1/3-octave centre frequencies, calculated from the IEC 61672 formulas (the same formulas work in a spreadsheet). A-weighting removes much of the bass to follow the ear’s sensitivity at moderate levels, which is why it is used for exposure limits.</figcaption>
+<img src="weighting-curves.png" alt="Chart of A-weighting and C-weighting curves from 20 Hz to 20 kHz. A-weighting cuts the low frequencies heavily, while C-weighting is almost flat.">
+<figcaption>Figure 2. A- and C-weighting curves, plotted in a spreadsheet from the IEC 61672-1 formulas (IEC, 2013). A-weighting cuts the bass to follow the ear’s lower sensitivity at moderate levels, which is why exposure limits use it.</figcaption>
 </figure>
 
 <h2>What I measured</h2>
-<p>I measured three sources with a dB meter app on my phone: my MacBook speakers playing a song from YouTube with the Mac at about 60% volume, my headphones at 80% volume, and a 2025 Lotus Emira, measured 1 m from the exhaust while it was revved every 10–15 seconds. For the music, the YouTube player volume stayed at 50%, so the differences come from the devices.</p>
+<p>I measured three sources for about a minute each, using the Decibel: dB sound level meter app (by Vlad Polyanskiy) on my phone, set to A-weighting (dB-A). First, my MacBook speakers playing a song from YouTube, with the Mac at about 60% volume. Second, my headphones at 80% volume, with the phone about an inch and a half (roughly 4 cm) away from them, to copy about where my ear would be. Third, a 2025 Lotus Emira, measured 1 m from the exhaust while it was revved every 10–15 seconds. For the music, the YouTube player volume stayed at 50%, so the differences come from the devices.</p>
 <figure>
-<svg id="bars" viewBox="0 0 640 280" role="img" aria-label="Bar chart of average measured levels: MacBook speakers 80 dBA, headphones 95 dBA, Lotus Emira exhaust at 1 metre 99 dBA, with the 85 dBA limit marked."></svg>
-<figcaption>Figure 3. Average level of each source compared with the NIOSH (1998) limit of 85 dBA.</figcaption>
+<div class="shots">
+<img src="meter-macbook.jpg" alt="Decibel app screenshot for the MacBook speakers, average 80 dB-A, highest 88.">
+<img src="meter-headphones.jpg" alt="Decibel app screenshot for the headphones, average 95 dB-A, highest 99.">
+<img src="meter-emira.jpg" alt="Decibel app screenshot for the Lotus Emira exhaust at 1 metre, average 99 dB-A, highest 104.">
+</div>
+<figcaption>Figure 3. Readings from the Decibel app (dB-A), about one minute each. Left to right: MacBook speakers, headphones, and the Lotus Emira exhaust at 1 m. The graph at the bottom of each screenshot is the app’s live frequency spectrum.</figcaption>
+</figure>
+<figure>
+<img src="measurements.png" alt="Bar chart of average and highest levels for the three sources, with the 85 dBA limit as a dashed line.">
+<figcaption>Figure 4. Average and highest level of each source, compared with the NIOSH (1998) limit of 85 dBA.</figcaption>
 </figure>
 <div class="wrap"><table>
-<thead><tr><th>Source</th><th>Average</th><th>Safe time at that level (NIOSH, 1998)</th></tr></thead>
+<thead><tr><th>Source</th><th>Average</th><th>Highest</th><th>Safe time at the average (NIOSH, 1998)</th></tr></thead>
 <tbody>
-<tr><td>MacBook speakers</td><td>80 dBA</td><td>8 hours or more (below the limit)</td></tr>
-<tr><td>Headphones</td><td>95 dBA</td><td>about 48 minutes</td></tr>
-<tr><td>Lotus Emira exhaust, 1 m</td><td>99 dBA</td><td>about 19 minutes</td></tr>
+<tr><td>MacBook speakers</td><td>80 dBA</td><td>88 dBA</td><td>8 hours or more (below the limit)</td></tr>
+<tr><td>Headphones</td><td>95 dBA</td><td>99 dBA</td><td>about 48 minutes</td></tr>
+<tr><td>Lotus Emira exhaust, 1 m</td><td>99 dBA</td><td>104 dBA</td><td>about 19 minutes</td></tr>
 </tbody></table></div>
 <p>The headphone result surprised me most. The car is louder, but nobody stands next to an exhaust for hours, while headphones are easy to wear all day.</p>
-<p><strong>Distance matters.</strong> In open space the level drops by roughly 6 dB each time the distance from a source doubles, so a reading at 2 m would be lower than at 1 m. That is why a measurement should always say how far the microphone was from the source, and why I recorded 1 m for the exhaust. The revving also makes the level rise and fall, so an average understates the peaks. Phone microphones are only a rough guide, and the level at your eardrum from headphones is not the same as what a microphone reads.</p>
+<p><strong>Distance matters.</strong> In open space the level drops by roughly 6 dB each time the distance from a source doubles, so a reading at 2 m would be lower than at 1 m. That is why a measurement should always say how far the microphone was from the source, and why I recorded 1 m for the exhaust. The revving makes the level rise and fall (it reached 104 dBA at the peaks), so an average understates the loudest moments. Phone microphones are only a rough guide, and the level at your eardrum from headphones is not the same as what a microphone reads.</p>
 
 <h2>Check what you’ve learned</h2>
 <div id="quiz"></div>
@@ -155,6 +153,7 @@ footer p{margin:.4rem 0;padding-left:1.5rem;text-indent:-1.5rem}
 
 <footer>
 <p>Made by Yousif Al Jaddah for AUD175.2 Audio Investigations 2. Educational only, not medical advice. If ringing or muffled hearing lasts more than a day, see an audiologist.</p>
+<p>Chittka, L., &amp; Brockmann, A. (2005). Perception space: The final frontier. <em>PLoS Biology, 3</em>(4), e137. https://doi.org/10.1371/journal.pbio.0030137</p>
 <p>Fletcher, H., &amp; Munson, W. A. (1933). Loudness, its definition, measurement and calculation. <em>The Journal of the Acoustical Society of America, 5</em>(2), 82–108.</p>
 <p>International Electrotechnical Commission. (2013). <em>Electroacoustics – Sound level meters – Part 1: Specifications</em> (IEC 61672-1:2013).</p>
 <p>International Organization for Standardization. (2003). <em>Acoustics – Normal equal-loudness-level contours</em> (ISO 226:2003).</p>
@@ -171,31 +170,8 @@ function fmt(m){if(m>=60){var h=m/60;return (h>=10?Math.round(h):+h.toFixed(1))+
 if(m>=1){return (m>=10?Math.round(m):+m.toFixed(1))+' minutes'}
 return Math.max(1,Math.round(m*60))+' seconds'}
 function upd(){var L=+s.value;lv.textContent=L;t.textContent=L<=85?'8 hours or more':fmt(480/Math.pow(2,(L-85)/3));
-for(var i=0;i<refs.length;i++){if(L<refs[i][0]){rf.textContent='Roughly '+refs[i][1]+'.';break}}}
+for(var i=0;i<refs.length;i++){if(L<refs[i][0]){rf.textContent=refs[i][1].charAt(0).toUpperCase()+refs[i][1].slice(1)+'.';break}}}
 s.addEventListener('input',upd);upd();
-
-function plot(id,ser,y0,y1,dy,yl){
-var W=640,H=300,l=46,r=10,t=10,b=34,lo=Math.log10(20),hi=Math.log10(20000),o='';
-function X(f){return l+(Math.log10(f)-lo)/(hi-lo)*(W-l-r)}
-function Y(v){return t+(y1-v)/(y1-y0)*(H-t-b)}
-[20,50,100,200,500,1000,2000,5000,10000,20000].forEach(function(f){var x=X(f).toFixed(1);o+='<line class="gl" x1="'+x+'" x2="'+x+'" y1="'+t+'" y2="'+(H-b)+'"/>';
-if([20,100,1000,10000,20000].indexOf(f)>-1)o+='<text x="'+x+'" y="'+(H-b+16)+'" text-anchor="middle">'+(f>=1000?f/1000+'k':f)+'</text>'});
-for(var v=y0;v<=y1;v+=dy){var y=Y(v).toFixed(1);o+='<line class="gl" x1="'+l+'" x2="'+(W-r)+'" y1="'+y+'" y2="'+y+'"/><text x="'+(l-6)+'" y="'+(+y+4)+'" text-anchor="end">'+v+'</text>'}
-o+='<text x="'+(l+(W-l-r)/2)+'" y="'+(H-3)+'" text-anchor="middle">Frequency (Hz)</text><text transform="rotate(-90)" x="'+(-(t+(H-t-b)/2))+'" y="12" text-anchor="middle">'+yl+'</text>';
-ser.forEach(function(q){if(q[2])o+=q[0].map(function(p){return '<circle cx="'+X(p[0]).toFixed(1)+'" cy="'+Y(p[1]).toFixed(1)+'" r="3" style="fill:'+q[1]+'"/>'}).join('');o+='<polyline fill="none" style="stroke:'+q[1]+'" stroke-width="2.5" stroke-linejoin="round" points="'+q[0].map(function(p){return X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)}).join(' ')+'"/>'});
-document.getElementById(id).innerHTML=o}
-function gen(fn){return [20,25,31.5,40,50,63,80,100,125,160,200,250,315,400,500,630,800,1000,1250,1600,2000,2500,3150,4000,5000,6300,8000,10000,12500,16000,20000].map(function(f){return [f,fn(f)]})}
-var c=12194*12194;
-function A(f){var q=f*f;return 20*Math.log10(c*q*q/((q+20.6*20.6)*Math.sqrt((q+107.7*107.7)*(q+737.9*737.9))*(q+c)))+2}
-function C(f){var q=f*f;return 20*Math.log10(c*q/((q+20.6*20.6)*(q+c)))+0.06}
-plot('wt',[[[[20,0],[20000,0]],'var(--muted)'],[gen(A),'var(--accent)',1],[gen(C),'var(--bad)',1]],-60,10,10,'Relative response (dB)');
-
-(function(){var d=[['MacBook speakers',80],['Headphones',95],['Emira exhaust, 1 m',99]],H=280,l=46,t=14,b=44,o='';
-function Y(v){return t+(120-v)/120*(H-t-b)}
-for(var v=0;v<=120;v+=20){var y=Y(v).toFixed(1);o+='<line class="gl" x1="'+l+'" x2="630" y1="'+y+'" y2="'+y+'"/><text x="'+(l-6)+'" y="'+(+y+4)+'" text-anchor="end">'+v+'</text>'}
-d.forEach(function(p,i){var x=l+40+i*180,y=Y(p[1]);o+='<rect x="'+x+'" y="'+y.toFixed(1)+'" width="110" height="'+(Y(0)-y).toFixed(1)+'" style="fill:var(--accent)"/><text x="'+(x+55)+'" y="'+(y+22).toFixed(1)+'" text-anchor="middle" style="fill:var(--bg);font-weight:800;font-size:16px">'+p[1]+'</text><text x="'+(x+55)+'" y="'+(Y(0)+18).toFixed(1)+'" text-anchor="middle">'+p[0]+'</text>'});
-var y85=Y(85).toFixed(1);o+='<line x1="'+l+'" x2="630" y1="'+y85+'" y2="'+y85+'" stroke-dasharray="6 4" stroke-width="2" style="stroke:var(--bad)"/><text x="'+(l+4)+'" y="'+(y85-6)+'" style="fill:var(--bad);font-weight:600">85 dBA limit</text><text transform="rotate(-90)" x="'+(-(t+(H-t-b)/2))+'" y="12" text-anchor="middle">Average level (dBA)</text>';
-document.getElementById('bars').innerHTML=o})();
 
 var Q=[
 {q:'You raise a loud session from 85 dBA to 94 dBA. What happens to the safe daily time?',o:['It halves once, to 4 hours','It drops to 2 hours','It drops to 1 hour','It stays the same'],a:2,e:'Each 3 dB halves the time: 85 to 88 is 4 hours, 91 is 2 hours and 94 is 1 hour.'},
